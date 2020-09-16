@@ -1,0 +1,6 @@
+    final geolocator = GeolocatorPlatform.instance;
+
+    double dis = geolocator.distanceBetween(latStore, longStore, lat, long);
+
+
+    ultima aula 111

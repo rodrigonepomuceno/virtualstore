@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Loja do Rodrigo</string>    
+    <string name="facebook_app_id">367526264409456</string> 
+    <string name="fb_login_protocol_scheme">fb367526264409456</string>
+</resources> 
