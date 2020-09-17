@@ -14,6 +14,7 @@ class CardTextField extends StatelessWidget {
     this.focusNode,
     this.onSubmitted,
     this.onSaved,
+    this.initialValue,
   }) : textInputAction =
             onSubmitted == null ? TextInputAction.done : TextInputAction.next;
 
@@ -29,11 +30,12 @@ class CardTextField extends StatelessWidget {
   final Function(String) onSubmitted;
   final TextInputAction textInputAction;
   final FormFieldSetter<String> onSaved;
+  final String initialValue;
 
   @override
   Widget build(BuildContext context) {
     return FormField<String>(
-      initialValue: '',
+      initialValue: initialValue,
       validator: validator,
       onSaved: onSaved,
       builder: (state) {
@@ -63,6 +65,7 @@ class CardTextField extends StatelessWidget {
                   ],
                 ),
               TextFormField(
+                initialValue: initialValue,
                 style: TextStyle(
                   color: title == null && state.hasError
                       ? Colors.red

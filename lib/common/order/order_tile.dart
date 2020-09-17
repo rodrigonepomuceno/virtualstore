@@ -5,7 +5,6 @@ import 'package:lojavirtual/common/order/order_product_tile.dart';
 import 'package:lojavirtual/models/order.dart';
 
 class OrderTile extends StatelessWidget {
-
   const OrderTile(this.order, {this.showControls = false});
 
   final Order order;
@@ -44,31 +43,32 @@ class OrderTile extends StatelessWidget {
             Text(
               order.statusText,
               style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: order.status == Status.canceled ?
-                  Colors.red : primaryColor,
-                fontSize: 14
-              ),
+                  fontWeight: FontWeight.w400,
+                  color: order.status == Status.canceled
+                      ? Colors.red
+                      : primaryColor,
+                  fontSize: 14),
             )
           ],
         ),
         children: <Widget>[
           Column(
-            children: order.items.map((e){
+            children: order.items.map((e) {
               return OrderProductTile(e);
             }).toList(),
           ),
-          if(showControls && order.status != Status.canceled)
+          if (showControls && order.status != Status.canceled)
             SizedBox(
               height: 50,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
                   FlatButton(
-                    onPressed: (){
-                      showDialog(context: context,
-                        builder: (_) => CancelOrderDialog(order)
-                      );
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (_) => CancelOrderDialog(order));
                     },
                     textColor: Colors.red,
                     child: const Text('Cancelar'),
@@ -82,10 +82,10 @@ class OrderTile extends StatelessWidget {
                     child: const Text('Avançar'),
                   ),
                   FlatButton(
-                    onPressed: (){
-                      showDialog(context: context,
-                        builder: (_) => ExportAddressDialog(order.address)
-                      );
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (_) => ExportAddressDialog(order.address));
                     },
                     textColor: primaryColor,
                     child: const Text('Endereço'),
