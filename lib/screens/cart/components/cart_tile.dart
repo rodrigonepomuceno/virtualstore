@@ -4,7 +4,6 @@ import 'package:lojavirtual/models/cart_product.dart';
 import 'package:provider/provider.dart';
 
 class CartTile extends StatelessWidget {
-
   const CartTile(this.cartProduct);
 
   final CartProduct cartProduct;
@@ -14,10 +13,9 @@ class CartTile extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: cartProduct,
       child: GestureDetector(
-        onTap: (){
-          Navigator.of(context).pushNamed(
-              '/product',
-            arguments: cartProduct.product);
+        onTap: () {
+          Navigator.of(context)
+              .pushNamed('/product', arguments: cartProduct.product);
         },
         child: Card(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -51,18 +49,17 @@ class CartTile extends StatelessWidget {
                           ),
                         ),
                         Consumer<CartProduct>(
-                          builder: (_, cartProduct, __){
-                            if(cartProduct.hasStock)
+                          builder: (_, cartProduct, __) {
+                            if (cartProduct.hasStock)
                               return Text(
                                 'R\$ ${cartProduct.unitPrice.toStringAsFixed(2)}',
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontSize: 16.0,
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    fontWeight: FontWeight.bold),
                               );
                             else
-                              return Text(
+                              return const Text(
                                 'Sem estoque suficiente',
                                 style: TextStyle(
                                   color: Colors.red,
@@ -76,7 +73,7 @@ class CartTile extends StatelessWidget {
                   ),
                 ),
                 Consumer<CartProduct>(
-                  builder: (_, cartProduct, __){
+                  builder: (_, cartProduct, __) {
                     return Column(
                       children: <Widget>[
                         CustomIconButton(
@@ -90,8 +87,9 @@ class CartTile extends StatelessWidget {
                         ),
                         CustomIconButton(
                           iconData: Icons.remove,
-                          color: cartProduct.quantity > 1 ?
-                            Theme.of(context).primaryColor : Colors.red,
+                          color: cartProduct.quantity > 1
+                              ? Theme.of(context).primaryColor
+                              : Colors.red,
                           onTap: cartProduct.decrement,
                         ),
                       ],
